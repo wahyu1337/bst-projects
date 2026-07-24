@@ -1,15 +1,14 @@
 import Node from "./node.js";
 
 // tree class & build tree function
-class Tree {
+export default class Tree {
     // constructor
     constructor(arr) {
-        this.arr = arr;
-        this.root = buidTree(arr, 0, arr.length - 1);
+        this.root = this.buildTree(arr, 0, arr.length - 1);
     };
 
     // building a tree method
-    buildTree(arr, start = 0, end = arr.lengnth - 1) {
+    buildTree(arr, start = 0, end = arr.length - 1) {
         // base case/conditional
         if (start > end) return null;
 

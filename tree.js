@@ -51,4 +51,27 @@ export default class Tree {
             }
         } return false; // if values not found
     };
+
+    // insert() method to insert a new value in tree
+    // private method insertRec()
+    _insertRec(node, value) {
+        // base case
+        if (node === null) return new Node(value);
+
+        // revursively check (left and then right)
+        if (value < node.data) {
+            node.left = this._insertRec(node.left, value);
+        } else {
+            node.right = this._insertRec(node.right, value);
+        }
+
+        // if current node === value, just return.
+        return node;
+    };
+
+    // public insert()
+    insert(value) {
+        this.root = this._insertRec(this.root, value);
+    }
+
 };

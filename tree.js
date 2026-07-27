@@ -72,6 +72,47 @@ export default class Tree {
     // public insert()
     insert(value) {
         this.root = this._insertRec(this.root, value);
-    }
+    };
 
+    // deleteItem(value) to remove from tree
+    // and make seperate successor if the node has two childs
+    // get inorder successor (smallest in the right subtree)
+    _getSuccessor(curr) {
+        curr = curr.right;
+        while (curr !== null && curr.left !== null) {
+            curr = curr.left;
+        }
+        return curr;
+    };
+
+    // delete node from bst
+    _deletedItemPvt(root, value) {
+        // base conditional
+        if (root === null) {
+            return root;
+        }
+
+        if (root.data > value) {
+            root.left = this._deletedItemPvt(root.left, value);
+        } else if (root.data < value) {
+            root.right = this._deletedItemPvt(root.right, value);
+        } else {
+            // node with 0 or 1 child
+            if (root.left === null) {
+                root = root.right;
+            } else if (root.right === null) {
+                root = root.left
+            } else {
+                // both have two children
+                const successor = this._getSuccessor(root)
+                root.data = successor.data
+                root.right = this._deletedItemPvt(root.right, successor.data);
+            }
+        }
+        return root;
+    };
+
+    deleteItem(value) {
+        this.root = this._deletedItemPvt(this.root, value);
+    };
 };

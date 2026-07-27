@@ -8,5 +8,6 @@ console.log("Includes: 7, " + node.includes(7));
 console.log("Includes: 99, " + node.includes(99));
 node.insert(99);
 node.sort();
-logs(node.root);
+node.deleteItem(4);
 console.log("Includes: 99, " + node.includes(99));
+logs(node.root);
